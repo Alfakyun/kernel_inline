@@ -5973,15 +5973,9 @@ int hdd_set_genie_to_csr(hdd_adapter_t *pAdapter, eCsrAuthType *RSNAuthType)
 		pWextState->roamProfile.EncryptionType.numEntries = 1;
 		pWextState->roamProfile.mcEncryptionType.numEntries = 1;
 
-		pWextState->roamProfile.EncryptionType.encryptionType[0] = RSNEncryptType;      /* Use the cipher type in the RSN IE */
-		pWextState->roamProfile.mcEncryptionType.encryptionType[0] =
-			mcRSNEncryptType;
-
 		if ((QDF_IBSS_MODE == pAdapter->device_mode) &&
-		    ((eCSR_ENCRYPT_TYPE_AES == mcRSNEncryptType) ||
-		     (eCSR_ENCRYPT_TYPE_AES_GCMP == mcRSNEncryptType) ||
-		     (eCSR_ENCRYPT_TYPE_AES_GCMP_256 == mcRSNEncryptType) ||
-		     (eCSR_ENCRYPT_TYPE_TKIP == mcRSNEncryptType))) {
+		     ((eCSR_ENCRYPT_TYPE_AES_GCMP == mcRSNEncryptType) ||
+		     (eCSR_ENCRYPT_TYPE_AES_GCMP_256 == mcRSNEncryptType))) {
 			/*
 			 * For wpa none supplicant sends the WPA IE with unicast
 			 * cipher as eCSR_ENCRYPT_TYPE_NONE ,where as the
@@ -5990,9 +5984,6 @@ int hdd_set_genie_to_csr(hdd_adapter_t *pAdapter, eCsrAuthType *RSNAuthType)
 			 * wpa_supplicant.conf.
 			 */
 
-			/* Set the unicast cipher same as multicast cipher */
-			pWextState->roamProfile.EncryptionType.encryptionType[0]
-				= mcRSNEncryptType;
 		}
 #ifdef WLAN_FEATURE_11W
 		hdd_debug("RSNMfpRequired = %d, RSNMfpCapable = %d",
