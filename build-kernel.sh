@@ -95,7 +95,7 @@ Device: Platina ( MI 8 LITE )
 Kernel: 4.4.x
 Status: Stable"
 curl -F caption="✅Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds" -F document=@"/home/rudy/kernel/morph/AnyKernel3/$FILENAME" https://api.telegram.org/bot883795091:AAHn3EvMjZl7abdMYH1C2hbY04t7XBq09uw/sendDocument?chat_id=-1001304512334
-    rm -rf /home/rudy/kernel/morph/AnyKernel3/Image.gz-dtb
-    rm -rf /home/rudy/kernel/morph/AnyKernel3/$FILENAME
-    rm -rf /home/rudy/kernel/morph/out
+    rm -rf /home/rudy/kernel/eas/AnyKernel3/Image.gz-dtb
+    rm -rf /home/rudy/kernel/eas/AnyKernel3/$FILENAME
+    rm -rf /home/rudy/kernel/eas/out
 echo -e "The build is complete, and is in the directory AnyKernel3"
