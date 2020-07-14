@@ -69,10 +69,10 @@ fi
 [[ -z ${ZIP_DIR} ]] && { exit; }
 
 # Compress to zip file
-cp out/arch/arm64/boot/Image.gz-dtb /home/rudy/kernel/morph/AnyKernel3
-    cd /home/rudy/kernel/morph/AnyKernel3
+cp out/arch/arm64/boot/Image.gz-dtb /home/rudy/kernel/eas/AnyKernel3
+    cd /home/rudy/kernel/eas/AnyKernel3
     zip -r9 $FILENAME *
-    cd /home/rudy/kernel/morph/AnyKernel3
+    cd /home/rudy/kernel/eas/AnyKernel3
 BUILD_END=$(date +"%s")
 DIFF=$(($BUILD_END - $BUILD_START))
 curl -s -X POST "https://api.telegram.org/bot883795091:AAHn3EvMjZl7abdMYH1C2hbY04t7XBq09uw/sendMessage" \
@@ -94,7 +94,7 @@ Version: EAS
 Device: Platina ( MI 8 LITE )
 Kernel: 4.4.x
 Status: Stable"
-curl -F caption="✅Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds" -F document=@"/home/rudy/kernel/morph/AnyKernel3/$FILENAME" https://api.telegram.org/bot883795091:AAHn3EvMjZl7abdMYH1C2hbY04t7XBq09uw/sendDocument?chat_id=-1001304512334
+curl -F caption="✅Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds" -F document=@"/home/rudy/kernel/eas/AnyKernel3/$FILENAME" https://api.telegram.org/bot883795091:AAHn3EvMjZl7abdMYH1C2hbY04t7XBq09uw/sendDocument?chat_id=-1001304512334
     rm -rf /home/rudy/kernel/eas/AnyKernel3/Image.gz-dtb
     rm -rf /home/rudy/kernel/eas/AnyKernel3/$FILENAME
     rm -rf /home/rudy/kernel/eas/out
