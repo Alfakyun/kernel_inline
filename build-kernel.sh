@@ -88,9 +88,9 @@ M   M    M   M    M  MMM  MMM  MMM
 M          M     MM    M     M M         M   M
 
 =================================
+Android: 10
 Compiler: GCC 10.x
 Version: EAS
-Branch: Inline
 Device: Platina ( MI 8 LITE )
 Kernel: 4.4.x
 Status: Stable"
