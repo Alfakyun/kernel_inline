@@ -4,10 +4,10 @@
 # Simple Local Kernel Build Script
 
 # Clone gcc10
-if ! [ -d "$PWD/gcc10" ]; then
-    git clone https://github.com/1cecreamm/aarch64-raph-linux-android.git -b elf --depth=1 gcc10
+if ! [ -d "$PWD/gcc11" ]; then
+    git clone https://github.com/mvaisakh/gcc-arm64.git -b gcc-master --depth=1 gcc11
 else
-    echo "gcc10 folder is exist, not cloning"
+    echo "gcc11 folder is exist, not cloning"
 fi
 
 # Clone AnyKernel3
@@ -29,12 +29,12 @@ CORES=$(grep -c ^processor /proc/cpuinfo)
 THREAD="-j$CORES"
 
 # Export
-export FILENAME="Morph-Limited-MIUI-EAS-GCC10-$(date "+%Y%m%d-%H%M").zip"
+export FILENAME="Morph-Limited-MIUI-EAS-GCC11-$(date "+%Y%m%d-%H%M").zip"
 export KERNEL_USE_CCACHE=1
 export ARCH=arm64
 export SUBARCH=arm64
 export CROSS_COMPILE
-export CROSS_COMPILE="$KERNEL_DIR/gcc10/bin/aarch64-raphiel-elf-"
+export CROSS_COMPILE="$KERNEL_DIR/gcc11/bin/aarch64-elf-"
 export KBUILD_BUILD_USER="1cecreamm"
 export KBUILD_BUILD_HOST="hisokadevv"
 
@@ -88,8 +88,8 @@ M   M    M   M    M  MMM  MMM  MMM
 M          M     MM    M     M M         M   M
 
 =================================
-Android: 10
-Compiler: GCC 10.x
+Android: 10/11
+Compiler: GCC 11.x
 Version: MIUI-EAS
 Device: Platina ( MI 8 LITE )
 Kernel: 4.4.x
