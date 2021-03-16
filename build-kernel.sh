@@ -29,7 +29,7 @@ CORES=$(grep -c ^processor /proc/cpuinfo)
 THREAD="-j$CORES"
 
 # Export
-export FILENAME="Morph-Limited-MIUI-EAS-GCC11-$(date "+%Y%m%d-%H%M").zip"
+export FILENAME="Morph-GCC11-$(date "+%Y%m%d-%H%M").zip"
 export KERNEL_USE_CCACHE=1
 export ARCH=arm64
 export SUBARCH=arm64
@@ -90,7 +90,7 @@ M          M     MM    M     M M         M   M
 =================================
 Android: 10/11
 Compiler: GCC 11.x
-Version: MIUI-EAS
+Version: Universal
 Device: Platina ( MI 8 LITE )
 Kernel: 4.4.x
 Status: Stable"
