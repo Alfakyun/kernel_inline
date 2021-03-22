@@ -32,7 +32,6 @@
 #define PINCTRL_STATE_SUSPEND		"pmx_ts_suspend"
 #define PINCTRL_STATE_RELEASE		"pmx_ts_release"
 #define NVT_COORDS_ARR_SIZE 2
-#define NVT_DEBUG 0
 
 /*---GPIO number---*/
 #define NVTTOUCH_INT_PIN 943
