@@ -75,7 +75,7 @@ cp out/arch/arm64/boot/Image.gz-dtb /home/rudy/kernel/miui/AnyKernel3
     cd /home/rudy/kernel/miui/AnyKernel3
 BUILD_END=$(date +"%s")
 DIFF=$(($BUILD_END - $BUILD_START))
-curl -s -X POST "https://api.telegram.org/bot883795091:AAHn3EvMjZl7abdMYH1C2hbY04t7XBq09uw/sendMessage" \
+curl -s -X POST "https://api.telegram.org/bot1652915112:AAEkFfIHUYgaC9n1KORuVVwCcuJo99j-_uM/sendMessage" \
             -d chat_id="-1001304512334" \
             -d "disable_web_page_preview=true" \
             -d "parse_mode=markdown" \
@@ -94,7 +94,7 @@ Version: Universal
 Device: Platina ( MI 8 LITE )
 Kernel: 4.4.x
 Status: Stable"
-curl -F caption="✅Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds" -F document=@"/home/rudy/kernel/miui/AnyKernel3/$FILENAME" https://api.telegram.org/bot883795091:AAHn3EvMjZl7abdMYH1C2hbY04t7XBq09uw/sendDocument?chat_id=-1001304512334
+curl -F caption="✅Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds" -F document=@"/home/rudy/kernel/miui/AnyKernel3/$FILENAME" https://api.telegram.org/bot1652915112:AAEkFfIHUYgaC9n1KORuVVwCcuJo99j-_uM/sendDocument?chat_id=-1001304512334
     rm -rf /home/rudy/kernel/miui/AnyKernel3/Image.gz-dtb
     rm -rf /home/rudy/kernel/miui/AnyKernel3/$FILENAME
     rm -rf /home/rudy/kernel/miui/out
