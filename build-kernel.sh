@@ -5,7 +5,7 @@
 
 # Clone gcc10
 if ! [ -d "$PWD/gcc11" ]; then
-    git clone https://github.com/mvaisakh/gcc-arm64.git -b gcc-master --depth=1 gcc11
+    git clone https://github.com/mvaisakh/gcc-arm64.git -b gcc-master --depth=1 gcc12
 else
     echo "gcc11 folder is exist, not cloning"
 fi
@@ -29,12 +29,12 @@ CORES=$(grep -c ^processor /proc/cpuinfo)
 THREAD="-j$CORES"
 
 # Export
-export FILENAME="Morph-GCC11-$(date "+%Y%m%d-%H%M").zip"
+export FILENAME="Morph-GCC12-$(date "+%Y%m%d-%H%M").zip"
 export KERNEL_USE_CCACHE=1
 export ARCH=arm64
 export SUBARCH=arm64
 export CROSS_COMPILE
-export CROSS_COMPILE="$KERNEL_DIR/gcc11/bin/aarch64-elf-"
+export CROSS_COMPILE="$KERNEL_DIR/gcc12/bin/aarch64-elf-"
 export KBUILD_BUILD_USER="1cecreamm"
 export KBUILD_BUILD_HOST="hisokadevv"
 
@@ -89,7 +89,7 @@ M          M     MM    M     M M         M   M
 
 =================================
 Android: 10/11
-Compiler: GCC 11.x
+Compiler: GCC 12.x
 Version: Universal
 Device: Platina ( MI 8 LITE )
 Kernel: 4.4.x
