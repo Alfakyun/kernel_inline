@@ -43,7 +43,7 @@ CORES=$(grep -c ^processor /proc/cpuinfo)
 THREAD="-j$CORES"
 
 # Export
-export FILENAME="Morph-GCC12-$(date "+%Y%m%d-%H%M").zip"
+export FILENAME="Morph-Aurora-$(date "+%Y%m%d-%H%M").zip"
 export KERNEL_USE_CCACHE=1
 export ARCH=arm64
 export SUBARCH=arm64
