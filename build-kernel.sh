@@ -1,13 +1,27 @@
 #!/usr/bin/env bash
-# Copyright (C) 2020 1cecreamm ( @iicecreamm )
-# Configured for MI 8 Lite ( platina )
+# Copyright (C) 2020-2021 IceCreamGang
+# Configured for MI 8 Lite a.k.a platina
 # Simple Local Kernel Build Script
 
-# Clone gcc10
-if ! [ -d "$PWD/gcc11" ]; then
-    git clone https://github.com/mvaisakh/gcc-arm64.git -b gcc-master --depth=1 gcc12
+# Clone Clang
+if ! [ -d "$PWD/clang" ]; then
+    git clone https://github.com/kdrag0n/proton-clang.git -b master --depth=1 clang
 else
-    echo "gcc11 folder is exist, not cloning"
+    echo "clang folder is exist, not cloning"
+fi
+
+# Clone GCC64
+if ! [ -d "$PWD/gcc64" ]; then
+    git clone https://github.com/mvaisakh/gcc-arm64.git -b gcc-master --depth=1 gcc64
+else
+    echo "gcc64 folder is exist, not cloning"
+fi
+
+# Clone GCC32
+if ! [ -d "$PWD/gcc32" ]; then
+    git clone https://github.com/mvaisakh/gcc-arm.git -b gcc-master --depth=1 gcc32
+else
+    echo "gcc32 folder is exist, not cloning"
 fi
 
 # Clone AnyKernel3
@@ -34,9 +48,9 @@ export KERNEL_USE_CCACHE=1
 export ARCH=arm64
 export SUBARCH=arm64
 export CROSS_COMPILE
-export CROSS_COMPILE="$KERNEL_DIR/gcc12/bin/aarch64-elf-"
-export KBUILD_BUILD_USER="1cecreamm"
-export KBUILD_BUILD_HOST="hisokadevv"
+export CROSS_COMPILE="$KERNEL_DIR/gcc64/bin/aarch64-elf-"
+export KBUILD_BUILD_USER="morph"
+export KBUILD_BUILD_HOST="icecreamgang"
 
 # Mkdir
 if ! [ -d "$KERNEL_DIR/out" ]; then
@@ -69,10 +83,10 @@ fi
 [[ -z ${ZIP_DIR} ]] && { exit; }
 
 # Compress to zip file
-cp out/arch/arm64/boot/Image.gz-dtb /home/rudy/kernel/miui/AnyKernel3
-    cd /home/rudy/kernel/miui/AnyKernel3
+cp out/arch/arm64/boot/Image.gz-dtb $PWD/AnyKernel3
+    cd $PWD/AnyKernel3
     zip -r9 $FILENAME *
-    cd /home/rudy/kernel/miui/AnyKernel3
+    $PWD/
 BUILD_END=$(date +"%s")
 DIFF=$(($BUILD_END - $BUILD_START))
 curl -s -X POST "https://api.telegram.org/bot1652915112:AAEkFfIHUYgaC9n1KORuVVwCcuJo99j-_uM/sendMessage" \
@@ -91,11 +105,11 @@ M          M     MM    M     M M         M   M
 Android: 10/11
 Compiler: GCC 12.x
 Version: Universal
-Device: Platina ( MI 8 LITE )
+Device: Platina (MI 8 Lite)
 Kernel: 4.4.x
 Status: Stable"
-curl -F caption="✅Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds" -F document=@"/home/rudy/kernel/miui/AnyKernel3/$FILENAME" https://api.telegram.org/bot1652915112:AAEkFfIHUYgaC9n1KORuVVwCcuJo99j-_uM/sendDocument?chat_id=-1001304512334
-    rm -rf /home/rudy/kernel/miui/AnyKernel3/Image.gz-dtb
-    rm -rf /home/rudy/kernel/miui/AnyKernel3/$FILENAME
-    rm -rf /home/rudy/kernel/miui/out
+curl -F caption="✅Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds" -F document=@"$ZIP_DIR/$FILENAME" https://api.telegram.org/bot1652915112:AAEkFfIHUYgaC9n1KORuVVwCcuJo99j-_uM/sendDocument?chat_id=-1001304512334
+    rm -rf $PWD/AnyKernel3/Image.gz-dtb
+    rm -rf $PWD/AnyKernel3/$FILENAME
+    rm -rf $PWD/out
 echo -e "The build is complete, and is in the directory AnyKernel3"
