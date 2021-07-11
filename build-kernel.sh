@@ -43,12 +43,13 @@ CORES=$(grep -c ^processor /proc/cpuinfo)
 THREAD="-j$CORES"
 
 # Export
-export FILENAME="Morph-Aurora-$(date "+%Y%m%d-%H%M").zip"
+export FILENAME="Morph-Aurora-LTO-$(date "+%Y%m%d-%H%M").zip"
 export KERNEL_USE_CCACHE=1
 export ARCH=arm64
 export SUBARCH=arm64
 export CROSS_COMPILE
 export CROSS_COMPILE="$KERNEL_DIR/gcc64/bin/aarch64-elf-"
+export CROSS_COMPILE_ARM32="$KERNEL_DIR/gcc32/bin/arm-eabi-"
 export KBUILD_BUILD_USER="morph"
 export KBUILD_BUILD_HOST="icecreamgang"
 
@@ -86,7 +87,7 @@ fi
 cp out/arch/arm64/boot/Image.gz-dtb $PWD/AnyKernel3
     cd $PWD/AnyKernel3
     zip -r9 $FILENAME *
-    $PWD/
+    cd $PWD/
 BUILD_END=$(date +"%s")
 DIFF=$(($BUILD_END - $BUILD_START))
 curl -s -X POST "https://api.telegram.org/bot1652915112:AAEkFfIHUYgaC9n1KORuVVwCcuJo99j-_uM/sendMessage" \
@@ -103,7 +104,7 @@ M          M     MM    M     M M         M   M
 
 =================================
 Android: 10/11
-Compiler: GCC 12.x
+Compiler: GCC 12.x with LTO
 Version: Universal
 Device: Platina (MI 8 Lite)
 Kernel: 4.4.x
