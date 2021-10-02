@@ -87,7 +87,7 @@ fi
 cp out/arch/arm64/boot/Image.gz-dtb $PWD/AnyKernel3
     cd $PWD/AnyKernel3
     zip -r9 $FILENAME *
-    cd $PWD/
+    cd $KERNEL_DIR/
 BUILD_END=$(date +"%s")
 DIFF=$(($BUILD_END - $BUILD_START))
 curl -s -X POST "https://api.telegram.org/bot1652915112:AAEkFfIHUYgaC9n1KORuVVwCcuJo99j-_uM/sendMessage" \
@@ -95,7 +95,7 @@ curl -s -X POST "https://api.telegram.org/bot1652915112:AAEkFfIHUYgaC9n1KORuVVwC
             -d "disable_web_page_preview=true" \
             -d "parse_mode=markdown" \
             -d text="=================================
-⚙️ Build kernel for platina started . . .
+⚙️ Build kernel for Platina started . . .
 
 MM   MM     MM    MM      MMM  M   M
 M M M M   M    M  M    M  M    M MMM
@@ -113,4 +113,6 @@ curl -F caption="✅Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 
     rm -rf $PWD/AnyKernel3/Image.gz-dtb
     rm -rf $PWD/AnyKernel3/$FILENAME
     rm -rf $PWD/out
-echo -e "The build is complete, and is in the directory AnyKernel3"
+
+# Build Complete
+echo -e "Kernel build complete"
