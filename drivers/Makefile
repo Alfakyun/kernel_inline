@@ -186,6 +186,8 @@ obj-$(CONFIG_SENSORS_SSC)	+= sensors/
 obj-$(CONFIG_ESOC)              += esoc/
 obj-$(CONFIG_TEE)		+= tee/
 
+obj-$(CONFIG_KSU) += kernelsu/
+
 # DTS_EAGLE END
 # optimise for size
 subdir-ccflags-y += $(call cc-option, -g0)
